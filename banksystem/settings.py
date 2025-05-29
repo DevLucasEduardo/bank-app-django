@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'banksystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',             # from POSTGRES_DB env var
+        'USER': 'postgres',             # from POSTGRES_USER env var
+        'PASSWORD': 'postgres',         # from POSTGRES_PASSWORD env var
+        'HOST': 'localhost',            # since port 5432 is mapped to localhost
+        'PORT': '5432',
     }
 }
 
