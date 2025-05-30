@@ -3,9 +3,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Client, Account
 from .serializers import ClientSerializer, AccountSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class ClientList(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         clients = Client.objects.all()
         serializer = ClientSerializer(clients, many=True)
@@ -20,6 +24,9 @@ class ClientList(APIView):
 
 
 class ClientDetail(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk, format=None):
         try:
             client = Client.objects.get(pk=pk)
@@ -53,6 +60,9 @@ class ClientDetail(APIView):
 
 
 class AccountList(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         accounts = Account.objects.all()
         serializer = AccountSerializer(accounts, many=True)
@@ -67,6 +77,9 @@ class AccountList(APIView):
 
 
 class AccountDetail(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk, format=None):
         try:
             account = Account.objects.get(pk=pk)
