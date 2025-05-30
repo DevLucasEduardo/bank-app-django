@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta 
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'banksystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',             # from POSTGRES_DB env var
-        'USER': 'postgres',             # from POSTGRES_USER env var
-        'PASSWORD': 'postgres',         # from POSTGRES_PASSWORD env var
-        'HOST': 'localhost',            # since port 5432 is mapped to localhost
-        'PORT': '5432',
+        'NAME': os.getenv('DATABASE_NAME'),             
+        'USER': os.getenv('DATABASE_USER'),             
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),         
+        'HOST': os.getenv('DATABASE_HOST'),            
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
