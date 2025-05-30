@@ -4,11 +4,13 @@ from rest_framework import status
 from .models import Client, Account
 from .serializers import ClientSerializer, AccountSerializer
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.throttling import UserRateThrottle
+from accounts.throttling import BurstRateThrottle
 
 class ClientList(APIView):
 
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle, BurstRateThrottle]
 
     def get(self, request, format=None):
         clients = Client.objects.all()
